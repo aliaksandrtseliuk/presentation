@@ -91,6 +91,7 @@ The never type represents the type of values that never occur. For instance, nev
 ## Type annotations
 
 TypeScript provides static typing through type annotations to enable type checking at compile time. This is optional and can be ignored to use the regular dynamic typing of JavaScript.
+
 ![...](./img/11_annotations.jpg)
 
 
