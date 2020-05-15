@@ -102,17 +102,22 @@ And indicate the type of data as «number» that the function should return.
 
 The function “REVERSE” can work with different types of data. To do this, we indicate that the function works with the type “T”, takes an array parameter with the type “T”, and returns an array with the type “T”.
 The parameter “T” will dynamically adapt to the values that the function takes
+
 ![...](./img/12_generics.jpg)
  
 ## Interfaces
 We create a type that is necessary for objects or for classes, where we indicate which fields, functions, elements should be present.
+
 ![...](./img/13_interfaces.jpg)
+
 The modifier «READONLY» is set for the field «ID» to explicitly indicate that this field is read-only. Setting the question symbol for the field «COLOR», we say that this parameter is optional.
  
 After that we can create a variable «RECT2» and specify a previously created type «RECT»
+
 ![...](./img/13_interfaces2.jpg)
 
 ## Classes
+
 ![...](./img/14_classes.jpg)
 
 When we specify a modifier «protected» for a field “voice”, this means that this field is available in the class “Animal”, as well as in other classes that inherit from the class “Animal”, for example class “Cat”
