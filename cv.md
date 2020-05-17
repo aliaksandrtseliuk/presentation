@@ -132,19 +132,19 @@ Constructs a type consisting of the return type of function T.
 
 ## Omit<T,K>
 Constructs a type by picking all properties from T and then removing K.
-![...](./img/15_utils_omit.jpg)
+![...](./img/16_utils_omit.jpg)
 
 ## Required<T>
 Constructs a type consisting of all properties of T set to required.
-![...](./img/15_utils_required.jpg)
+![...](./img/17_utils_required.jpg)
 
 ## Pick<T,K>
 Constructs a type by picking the set of properties K from T.
-![...](./img/15_utils_pick.jpg)
+![...](./img/18_utils_pick.jpg)
 
 ## Readonly<T>
 Constructs a type with all properties of T set to readonly, meaning the properties of the constructed type cannot be reassigned.
-![...](./img/15_utils_readonly.jpg)
+![...](./img/19_utils_readonly.jpg)
 
 ## More information:
 
