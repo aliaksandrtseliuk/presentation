@@ -21,6 +21,24 @@ On 22 September 2016, TypeScript 2.0 was released; it introduced several feature
 
 The latest version today is 3.9
 
+## TypeScript Compiler
+
+The TypeScript compiler, named tsc, is written in TypeScript. As a result, it can be compiled into regular JavaScript and can then be executed in any JavaScript engine
+
+The current version of the compiler supports ECMAScript 5 by default. An option is allowed to target ECMAScript 2015 to make use of language features exclusive to that version.
+
+![...](./img/0_ts-compiler0.jpg)
+
+To initialize TypeScript for a project, it is necessary to record “tsc --init” in the terminal. Thus, we will create the file “tsconfig.json”, in which you can specify the various settings for the TypeScript compiler.
+
+![...](./img/0_ts-compiler1.jpg)
+
+To generate a file with the extension d.ts, you need to run the command in the terminal "tsc --declaration <file_name> .ts"
+
+![...](./img/0_ts-compiler2.jpg)
+
+This file is a description of the component that will indicate the types of parameters that were passed to the function and the types of values that this function returns.
+
 ## Basic Types
 1.	Boolean
 2.	Number
@@ -59,16 +77,6 @@ The second way uses a generic array type, Array<elemType>:
 Tuple types allow you to express an array with a fixed number of elements whose types are known, but need not be the same. For example, you may want to represent a value as a pair of a string and a number:
 ![...](./img/5_tuple.jpg)
 
-## Enum
-A helpful addition to the standard set of datatypes from JavaScript is the enum. As in languages like C#, an enum is a way of giving more friendly names to sets of numeric values.
-![...](./img/6_enum1.jpg)
-
-By default, enums begin numbering their members starting at 0. You can change this by manually setting the value of one of its members. For example, we can start the previous example at 1 instead of 0:
-![...](./img/6_enum2.jpg)
-
-Or, even manually set all the values in the enum:
-![...](./img/6_enum3.jpg)
-
 ## Any
 We may need to describe the type of variables that we do not know when we are writing an application. These values may come from dynamic content, e.g. from the user or a 3rd party library. In these cases, we want to opt-out of type checking and let the values pass through compile-time checks. To do so, we label these with the any type:
 ![...](./img/7_any.jpg)
@@ -76,22 +84,11 @@ We may need to describe the type of variables that we do not know when we are wr
 ## Void
 Void is a little like the opposite of any: the absence of having any type at all. You may commonly see this as the return type of functions that do not return a value:
 ![...](./img/8_void.jpg)
-	
-## Null and Undefined
-In TypeScript, both undefined and null actually have their own types named undefined and null respectively. Much like void, they’re not extremely useful on their own:
-![...](./img/9_null_undefined.jpg)
-
-By default null and undefined are subtypes of all other types. That means you can assign null and undefined to something like number.
-
-## Never
-The never type represents the type of values that never occur. For instance, never is the return type for a function expression or an arrow function expression that always throws an exception or one that never returns; Variables also acquire the type never when narrowed by any type guards that can never be true.
-![...](./img/10_never.jpg)
 
 
 ## Type annotations
 
 TypeScript provides static typing through type annotations to enable type checking at compile time. This is optional and can be ignored to use the regular dynamic typing of JavaScript.
-
 ![...](./img/11_annotations.jpg)
 
 
@@ -102,28 +99,52 @@ And indicate the type of data as «number» that the function should return.
 
 The function “REVERSE” can work with different types of data. To do this, we indicate that the function works with the type “T”, takes an array parameter with the type “T”, and returns an array with the type “T”.
 The parameter “T” will dynamically adapt to the values that the function takes
-
 ![...](./img/12_generics.jpg)
  
 ## Interfaces
 We create a type that is necessary for objects or for classes, where we indicate which fields, functions, elements should be present.
-
 ![...](./img/13_interfaces.jpg)
-
 The modifier «READONLY» is set for the field «ID» to explicitly indicate that this field is read-only. Setting the question symbol for the field «COLOR», we say that this parameter is optional.
  
 After that we can create a variable «RECT2» and specify a previously created type «RECT»
-
 ![...](./img/13_interfaces2.jpg)
 
 ## Classes
-
 ![...](./img/14_classes.jpg)
 
 When we specify a modifier «protected» for a field “voice”, this means that this field is available in the class “Animal”, as well as in other classes that inherit from the class “Animal”, for example class “Cat”
 
 Variables or methods with a modifier “private” are available only in the class in which they were defined
 Also of note, the use of public on arguments to the constructor is a shorthand that allows us to automatically create properties with that name.
+
+## Utility Types
+
+1.  ReturnType
+2.	Omit
+3.	Required
+4.	Pick
+5.  Readonly
+    .etc
+
+## ReturnType<T>
+Constructs a type consisting of the return type of function T.
+![...](./img/15_utils_returntype.jpg)
+
+## Omit<T,K>
+Constructs a type by picking all properties from T and then removing K.
+![...](./img/15_utils_omit.jpg)
+
+## Required<T>
+Constructs a type consisting of all properties of T set to required.
+![...](./img/15_utils_required.jpg)
+
+## Pick<T,K>
+Constructs a type by picking the set of properties K from T.
+![...](./img/15_utils_pick.jpg)
+
+## Readonly<T>
+Constructs a type with all properties of T set to readonly, meaning the properties of the constructed type cannot be reassigned.
+![...](./img/15_utils_readonly.jpg)
 
 ## More information:
 
