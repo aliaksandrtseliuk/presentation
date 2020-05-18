@@ -165,6 +165,71 @@ Constructs a type with all properties of T set to readonly, meaning the properti
  
 ![...](./img/19_utils_readonly.jpg)
 
+## Conditional Types
+
+TypeScript 2.8 introduces conditional types which add the ability to express non-uniform type mappings. A conditional type selects one of two possible types based on a condition expressed as a type relationship test:
+ 
+![...](./img/20_conditional_types.jpg)
+
+The type above means when T is assignable to U the type is X, otherwise the type is Y.
+
+A conditional type T extends U ? X : Y is either resolved to X or Y, or deferred because the condition depends on one or more type variables. When T or U contains type variables, whether to resolve to X or Y, or to defer, is determined by whether or not the type system has enough information to conclude that T is always assignable to U.
+
+As an example of some types that are immediately resolved, we can take a look at the following example:
+
+![...](./img/21_conditional_types1.jpg)
+
+## Discriminated Unions
+
+Discriminated unions are useful in functional programming. Some languages automatically discriminate unions for you; TypeScript instead builds on JavaScript patterns as they exist today. There are three ingredients:
+
+1.	Types that have a common, singleton type property — the discriminant.
+2.	A type alias that takes the union of those types — the union.
+3.	Type guards on the common property.
+
+![...](./img/22_dec_union.jpg)
+
+First we declare the interfaces we will union. Each interface has a kind property with a different string literal type. The kind property is called the discriminant or tag. The other properties are specific to each interface. Notice that the interfaces are currently unrelated. Let’s put them into a union:
+
+![...](./img/22_dec_union1.jpg)
+
+Now let’s use the discriminated union:
+
+![...](./img/22_dec_union2.jpg)
+
+
+## Type Guard
+
+TypeScript is aware of the usage of the JavaScript instanceof and typeof operators. If you use these in a conditional block, TypeScript will understand the type of the variable to be different within that conditional block. Here is a quick example where TypeScript realizes that a particular function does not exist on string.
+
+![...](./img/23_typeguard.jpg)
+
+Here is an example with a class and instanceof:
+
+![...](./img/23_typeguard1.jpg)
+
+TypeScript even understands else so when an if narrows out one type it knows that within the else it's definitely not that type. Here is an example:
+
+![...](./img/23_typeguard2.jpg)
+
+## Literal Type Guard
+
+You can use === / == / !== / != to distinguish between literal values
+
+![...](./img/23_typeguard3.jpg)
+
+## Type Guards and callbacks
+
+TypeScript doesn't assume type guards remain active in callbacks as making this assumption is dangerous. e.g.
+
+![...](./img/23_typeguard4.jpg)
+
+The fix is as easy as storing the inferred safe value in a local variable, automatically ensuring it doesn't get changed externally, and TypeScript can easily understand that:
+
+![...](./img/23_typeguard5.jpg)
+
+
+
 ## More information:
 
 https://www.typescriptlang.org/index.html
