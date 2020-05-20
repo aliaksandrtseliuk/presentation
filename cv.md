@@ -29,17 +29,61 @@ The current version of the compiler supports ECMAScript 5 by default. An option 
 
 ![...](./img/0_ts-compiler0.jpg)
 
+If we need to connect Typescript to the project, we need to write the command "npm i -D typescript" in the terminal
+
+![...](./img/0_ts-compiler00.jpg)
+
 To initialize TypeScript for a project, it is necessary to record “tsc --init” in the terminal. Thus, we will create the file “tsconfig.json”, in which you can specify the various settings for the TypeScript compiler.
 
 ![...](./img/0_ts-compiler1.jpg)
 
-To generate a file with the extension d.ts, you need to run the command in the terminal "tsc --declaration <file_name> .ts"
+To generate a file with the extension d.ts, you need to run the command in the terminal "tsc --declaration <file_name>.ts"
 
 ![...](./img/0_ts-compiler2.jpg)
 
 This file is a description of the component that will indicate the types of parameters that were passed to the function and the types of values that this function returns.
 
+## Type annotations
+
+TypeScript provides static typing through type annotations to enable type checking at compile time. This is optional and can be ignored to use the regular dynamic typing of JavaScript.
+
+![...](./img/11_annotations.jpg)
+
+
+We indicate the type «number» for the parameters «A» and »B» 
+And indicate the type of data as «number» that the function should return.
+
+## Generics
+
+The function “REVERSE” can work with different types of data. To do this, we indicate that the function works with the type “T”, takes an array parameter with the type “T”, and returns an array with the type “T”.
+The parameter “T” will dynamically adapt to the values that the function takes
+
+![...](./img/12_generics.jpg)
+ 
+## Interfaces
+We create a type that is necessary for objects or for classes, where we indicate which fields, functions, elements should be present.
+
+![...](./img/13_interfaces.jpg)
+
+The modifier «READONLY» is set for the field «ID» to explicitly indicate that this field is read-only. Setting the question symbol for the field «COLOR», we say that this parameter is optional.
+ 
+After that we can create a variable «RECT2» and specify a previously created type «RECT»
+
+![...](./img/13_interfaces2.jpg)
+
+## Classes
+
+![...](./img/14_classes.jpg)
+
+When we specify a modifier «protected» for a field “voice”, this means that this field is available in the class “Animal”, as well as in other classes that inherit from the class “Animal”, for example class “Cat”
+
+Variables or methods with a modifier “private” are available only in the class in which they were defined
+Also of note, the use of public on arguments to the constructor is a shorthand that allows us to automatically create properties with that name.
+
 ## Basic Types
+
+Now we will focus on some basic types as:
+
 1.	Boolean
 2.	Number
 3.	String
@@ -50,7 +94,6 @@ This file is a description of the component that will indicate the types of para
 8.	Void
 9.	Null and Undefined
 10.	Never
-
 
 
 ## Boolean
@@ -93,92 +136,6 @@ Void is a little like the opposite of any: the absence of having any type at all
 
 ![...](./img/8_void.jpg)
 
-
-## Type annotations
-
-TypeScript provides static typing through type annotations to enable type checking at compile time. This is optional and can be ignored to use the regular dynamic typing of JavaScript.
-
-![...](./img/11_annotations.jpg)
-
-
-We indicate the type «number» for the parameters «A» and »B» 
-And indicate the type of data as «number» that the function should return.
-
-## Generics
-
-The function “REVERSE” can work with different types of data. To do this, we indicate that the function works with the type “T”, takes an array parameter with the type “T”, and returns an array with the type “T”.
-The parameter “T” will dynamically adapt to the values that the function takes
-
-![...](./img/12_generics.jpg)
- 
-## Interfaces
-We create a type that is necessary for objects or for classes, where we indicate which fields, functions, elements should be present.
-
-![...](./img/13_interfaces.jpg)
-
-The modifier «READONLY» is set for the field «ID» to explicitly indicate that this field is read-only. Setting the question symbol for the field «COLOR», we say that this parameter is optional.
- 
-After that we can create a variable «RECT2» and specify a previously created type «RECT»
-
-![...](./img/13_interfaces2.jpg)
-
-## Classes
-
-![...](./img/14_classes.jpg)
-
-When we specify a modifier «protected» for a field “voice”, this means that this field is available in the class “Animal”, as well as in other classes that inherit from the class “Animal”, for example class “Cat”
-
-Variables or methods with a modifier “private” are available only in the class in which they were defined
-Also of note, the use of public on arguments to the constructor is a shorthand that allows us to automatically create properties with that name.
-
-## Utility Types
-
-1. ReturnType
-2.	Omit
-3.	Required
-4.	Pick
-5. Readonly
-    .etc
-
-## ReturnType<T>
-Constructs a type consisting of the return type of function T.
- 
-![...](./img/15_utils_returntype.jpg)
-
-## Omit<T,K>
-Constructs a type by picking all properties from T and then removing K.
-
-![...](./img/16_utils_omit.jpg)
-
-## Required<T>
-Constructs a type consisting of all properties of T set to required.
- 
-![...](./img/17_utils_required.jpg)
-
-## Pick<T,K>
-Constructs a type by picking the set of properties K from T.
-
-![...](./img/18_utils_pick.jpg)
-
-## Readonly<T>
-Constructs a type with all properties of T set to readonly, meaning the properties of the constructed type cannot be reassigned.
- 
-![...](./img/19_utils_readonly.jpg)
-
-## Conditional Types
-
-TypeScript 2.8 introduces conditional types which add the ability to express non-uniform type mappings. A conditional type selects one of two possible types based on a condition expressed as a type relationship test:
- 
-![...](./img/20_conditional_types.jpg)
-
-The type above means when T is assignable to U the type is X, otherwise the type is Y.
-
-A conditional type T extends U ? X : Y is either resolved to X or Y, or deferred because the condition depends on one or more type variables. When T or U contains type variables, whether to resolve to X or Y, or to defer, is determined by whether or not the type system has enough information to conclude that T is always assignable to U.
-
-As an example of some types that are immediately resolved, we can take a look at the following example:
-
-![...](./img/21_conditional_types1.jpg)
-
 ## Discriminated Unions
 
 Discriminated unions are useful in functional programming. Some languages automatically discriminate unions for you; TypeScript instead builds on JavaScript patterns as they exist today. There are three ingredients:
@@ -212,12 +169,6 @@ TypeScript even understands else so when an if narrows out one type it knows tha
 
 ![...](./img/23_typeguard2.jpg)
 
-## Literal Type Guard
-
-You can use === / == / !== / != to distinguish between literal values
-
-![...](./img/23_typeguard3.jpg)
-
 ## Type Guards and callbacks
 
 TypeScript doesn't assume type guards remain active in callbacks as making this assumption is dangerous. e.g.
@@ -229,7 +180,8 @@ The fix is as easy as storing the inferred safe value in a local variable, autom
 ![...](./img/23_typeguard5.jpg)
 
 
-
 ## More information:
+
+It is not possible to cover all Typescript material in this presentation. Therefore, follow this link and you will get access to the language documentation and will be able to study all the material in more detail Thank you for the attention
 
 https://www.typescriptlang.org/index.html
